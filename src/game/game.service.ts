@@ -22,8 +22,8 @@ export class GameService {
   ) {}
 
   // Plant a new tree
-  async plantTree(plantTreeDto: PlantTreeDto) {
-    const { userId, seedId, slotIndex } = plantTreeDto;
+  async plantTree(userId: string, plantTreeDto: PlantTreeDto) {
+    const { seedId, slotIndex } = plantTreeDto;
 
     // Validate IDs
     if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(seedId)) {
@@ -110,8 +110,8 @@ export class GameService {
   }
 
   // Click tree to reduce time (batch update with combo)
-  async clickTree(clickTreeDto: ClickTreeDto) {
-    const { userId, plantedTreeId, clicks, timeReduction } = clickTreeDto;
+  async clickTree(userId: string, clickTreeDto: ClickTreeDto) {
+    const { plantedTreeId, clicks, timeReduction } = clickTreeDto;
 
     // Validate IDs
     if (
@@ -194,8 +194,8 @@ export class GameService {
   }
 
   // Sell tree
-  async sellTree(sellTreeDto: SellTreeDto) {
-    const { userId, plantedTreeId } = sellTreeDto;
+  async sellTree(userId: string, sellTreeDto: SellTreeDto) {
+    const { plantedTreeId } = sellTreeDto;
 
     // Validate IDs
     if (

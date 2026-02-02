@@ -25,10 +25,10 @@ export class GameController {
     @Body() plantTreeDto: PlantTreeDto,
     @CurrentUser() currentUser: any,
   ) {
-    const result = await this.gameService.plantTree({
-      userId: currentUser.userId,
-      ...plantTreeDto,
-    });
+    const result = await this.gameService.plantTree(
+      currentUser.userId,
+      plantTreeDto,
+    );
     
     return {
       success: true,
@@ -48,10 +48,10 @@ export class GameController {
     @Body() clickTreeDto: ClickTreeDto,
     @CurrentUser() currentUser: any,
   ) {
-    const result = await this.gameService.clickTree({
-      userId: currentUser.userId,
-      ...clickTreeDto,
-    });
+    const result = await this.gameService.clickTree(
+      currentUser.userId,
+      clickTreeDto,
+    );
     
     return {
       success: true,
@@ -71,10 +71,10 @@ export class GameController {
     @Body() sellTreeDto: SellTreeDto,
     @CurrentUser() currentUser: any,
   ) {
-    const result = await this.gameService.sellTree({
-      userId: currentUser.userId,
-      ...sellTreeDto,
-    });
+    const result = await this.gameService.sellTree(
+      currentUser.userId,
+      sellTreeDto,
+    );
     
     return {
       success: true,
