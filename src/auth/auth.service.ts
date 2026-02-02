@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
-import { User } from '../schemas/user.schema';
+import { Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { UsersService } from "../users/users.service";
+import { User } from "../schemas/user.schema";
 
 @Injectable()
 export class AuthService {
@@ -9,7 +9,16 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
+  generateJwtToken(user: User): string {
+    const payload = {
+      sub: user._id,
+      userId: user._id.toString(),
+      googleId: user.googleId,
+      email: user.email,
+    };
 
+    return this.jwtService.sign(payload);
+  }
   async validateGoogleUser(googleUser: {
     googleId: string;
     email: string;
@@ -18,11 +27,13 @@ export class AuthService {
   }): Promise<User> {
     // Check if user exists
     try {
-      const existingUser = await this.usersService.findByGoogleId(googleUser.googleId);
-      
+      const existingUser = await this.usersService.findByGoogleId(
+        googleUser.googleId,
+      );
+
       // Update last login
       await this.usersService.updateLastLogin(existingUser._id.toString());
-      
+
       return existingUser;
     } catch (error) {
       // User doesn't exist, create new one
@@ -31,7 +42,7 @@ export class AuthService {
         email: googleUser.email,
         name: googleUser.name,
       });
-      
+
       return newUser;
     }
   }
