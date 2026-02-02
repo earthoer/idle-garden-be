@@ -1,14 +1,14 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { NestFactory } from "@nestjs/core";
+import { ValidationPipe } from "@nestjs/common";
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   // Enable CORS
   app.enableCors({
-    origin: '*', // adjust in production
+    origin: "*", // adjust in production
     credentials: true,
   });
 
@@ -21,35 +21,35 @@ async function bootstrap() {
   );
 
   // API prefix
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix("api");
 
   // Swagger configuration
   const config = new DocumentBuilder()
-    .setTitle('Idle Garden API')
-    .setDescription('Backend API for Idle Garden mobile game')
-    .setVersion('1.0')
-    .addTag('Authentication', 'Google OAuth & JWT endpoints')
-    .addTag('Users', 'User management endpoints')
-    .addTag('Seeds', 'Seed information endpoints')
-    .addTag('Locations', 'Location information endpoints')
-    .addTag('Game', 'Game mechanics endpoints (plant, click, sell)')
+    .setTitle("Idle Garden API")
+    .setDescription("Backend API for Idle Garden mobile game")
+    .setVersion("1.0")
+    .addTag("Authentication", "Google OAuth & JWT endpoints")
+    .addTag("Users", "User management endpoints")
+    .addTag("Seeds", "Seed information endpoints")
+    .addTag("Locations", "Location information endpoints")
+    .addTag("Game", "Game mechanics endpoints (plant, click, sell)")
     .addBearerAuth(
       {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        description: 'Enter JWT token',
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+        description: "Enter JWT token",
       },
-      'JWT-auth',
+      "JWT-auth",
     )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api/docs', app, document);
+  SwaggerModule.setup("api/docs", app, document);
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  
+  await app.listen(port, "0.0.0.0");
+
   console.log(`
 ╔════════════════════════════════════════════════════╗
 ║                                                    ║
