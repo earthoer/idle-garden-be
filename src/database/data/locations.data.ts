@@ -1,0 +1,58 @@
+export const locationsData = [
+  {
+    code: 'waste_land',
+    name: 'Waste Land',
+    price: 0,
+    order: 1,
+    bonusType: 'click_speed',
+    bonusValue: 0,
+    bonusMultiplier: 1.0,
+    icon: '🏜️',
+    description: 'A barren wasteland. No bonuses.',
+    locationImageUrl: '/locations/waste_land/map.png',
+    potImageUrl: '/locations/waste_land/pot.png',
+  },
+  {
+    code: 'front_yard',
+    name: 'Front Yard',
+    price: 1500,
+    order: 2,
+    bonusType: 'grow_speed',
+    bonusValue: 10,
+    bonusMultiplier: 0.9,
+    icon: '🏡',
+    description: 'A cozy front yard. Trees grow 10% faster!',
+    locationImageUrl: '/locations/front_yard/map.png',
+    potImageUrl: '/locations/front_yard/pot.png',
+  },
+  {
+    code: 'back_yard',
+    name: 'Back Yard',
+    price: 5000,
+    order: 3,
+    bonusType: 'sell_price',
+    bonusValue: 15,
+    bonusMultiplier: 1.15,
+    icon: '🏡',
+    description: 'A spacious back yard. Sell price +15%!',
+    locationImageUrl: '/locations/back_yard/map.png',
+    potImageUrl: '/locations/back_yard/pot.png',
+  },
+  {
+    code: 'garden',
+    name: 'Garden',
+    price: 15000,
+    order: 4,
+    bonusType: 'grow_speed',
+    bonusValue: 20,
+    bonusMultiplier: 0.8,
+    icon: '🌸',
+    description: 'A beautiful garden. Trees grow 20% faster!',
+    locationImageUrl: '/locations/garden/map.png',
+    potImageUrl: '/locations/garden/pot.png',
+  },
+];
+
+// Note: Location images are stored as:
+// /locations/{code}/map.png (background)
+// /locations/{code}/pot.png (pot)
