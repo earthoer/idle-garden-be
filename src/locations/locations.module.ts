@@ -3,11 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { LocationsController } from './locations.controller';
 import { LocationsService } from './locations.service';
 import { Location, LocationSchema } from '../schemas/location.schema';
+import { User, UserSchema } from '../schemas/user.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Location.name, schema: LocationSchema },
+      { name: User.name, schema: UserSchema },
     ]),
   ],
   controllers: [LocationsController],
